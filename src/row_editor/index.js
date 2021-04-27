@@ -5,6 +5,7 @@
  * - State
  */
 import React, { useState } from "react";
+import { Table, Button, Col, Row } from "react-bootstrap";
 import _ from "lodash";
 import { NOTES, TABLE_WIDTH, TABLE_HEIGHT } from "./constants";
 import {
@@ -13,6 +14,7 @@ import {
   retrogradeInversion,
   populateMatrix,
 } from "./ttoneFuncs";
+import "./index.css";
 
 export const RowEditor = () => {
   // index is the column up next to be filled
@@ -21,8 +23,8 @@ export const RowEditor = () => {
   const [primeRow, setPrimeRow] = useState([]);
   const [rootNote, setRootNote] = useState(null);
 
-const subOffset = (num) => (num - rootNote + 12) % 12;
-const addOffset = (num) => (num + rootNote) % 12;
+  const subOffset = (num) => (num - rootNote + 12) % 12;
+  const addOffset = (num) => (num + rootNote) % 12;
 
   const chooseNote = (noteIndex) => {
     /**
@@ -44,8 +46,8 @@ const addOffset = (num) => (num + rootNote) % 12;
     setPrimeRow([]);
     setIndex(0);
   };
-// TODO: make populateMatrix populate entire Matrix
-const fullMatrix = populateMatrix(primeRow)
+  // TODO: make populateMatrix populate entire Matrix
+  const fullMatrix = populateMatrix(primeRow);
 
   // poulate columns with data
   // TODO: refactor into nested array.map() calls
@@ -64,20 +66,32 @@ const fullMatrix = populateMatrix(primeRow)
     columns.push(<tr>{myRow}</tr>);
   }
   return (
-    <div>
-      <table>{columns}</table>;
+    <div className="w-50 offset-3">
       {NOTES.map((note, i) => {
-        const noteIndex = subOffset(i, rootNote || 0)
-        return <button
-          key={noteIndex}
-          disabled={primeRow.includes(noteIndex)}
-          onClick={() => chooseNote(noteIndex)}
-        >
-          {note}
-        </button>;
+        const noteIndex = subOffset(i, rootNote || 0);
+        return (
+          <Button
+            className="border-0"
+            style={{ "background-color": `rgb(123, ${10 * i}, 123)` }}
+            key={noteIndex}
+            disabled={primeRow.includes(noteIndex)}
+            onClick={() => chooseNote(noteIndex)}
+          >
+            {note}
+          </Button>
+        );
       })}
-      <button onClick={resetChart}>Reset</button>
-      <button onClick={() => {}}>Submit</button>
+      <Table striped variant="dark" bordered>
+        <tbody>{columns}</tbody>
+      </Table>
+      <Col>
+        <Button className="btn-primary" onClick={() => {}}>
+          Submit
+        </Button>
+        <Button className="btn-secondary" onClick={resetChart}>
+          Reset
+        </Button>
+      </Col>
     </div>
   );
 };
