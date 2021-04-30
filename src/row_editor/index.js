@@ -5,15 +5,10 @@
  * - State
  */
 import React, { useState } from "react";
-import { Table, Button, Col, Row } from "react-bootstrap";
+import { Table, Button, Col } from "react-bootstrap";
 import _ from "lodash";
 import { NOTES, TABLE_WIDTH, TABLE_HEIGHT } from "./constants";
-import {
-  inversion,
-  retrograde,
-  retrogradeInversion,
-  populateMatrix,
-} from "./ttoneFuncs";
+import { populateMatrix } from "./ttoneFuncs";
 import "./index.css";
 
 export const RowEditor = () => {
@@ -56,14 +51,22 @@ export const RowEditor = () => {
     const myRow = [];
     for (let col = 0; col < TABLE_WIDTH; col++) {
       if (row === 0 && col < index) {
-        myRow.push(<td>{NOTES[addOffset(primeRow[col], rootNote)]}</td>);
+        myRow.push(
+          <td key={row + Math.random()}>
+            {NOTES[addOffset(primeRow[col], rootNote)]}
+          </td>
+        );
       } else if (!_.isNil(fullMatrix[row][col])) {
-        myRow.push(<td>{NOTES[addOffset(fullMatrix[row][col])]}</td>);
+        myRow.push(
+          <td key={row + Math.random()}>
+            {NOTES[addOffset(fullMatrix[row][col])]}
+          </td>
+        );
       } else {
-        myRow.push(<td>{col}</td>);
+        myRow.push(<td key={row + Math.random()}>{col}</td>);
       }
     }
-    columns.push(<tr>{myRow}</tr>);
+    columns.push(<tr key={row + Math.random()}>{myRow}</tr>);
   }
   return (
     <div className="w-50 offset-3">
@@ -72,7 +75,7 @@ export const RowEditor = () => {
         return (
           <Button
             className="border-0"
-            style={{ "background-color": `rgb(123, ${10 * i}, 123)` }}
+            style={{ backgroundColor: `rgb(123, ${10 * i}, 123)` }}
             key={noteIndex}
             disabled={primeRow.includes(noteIndex)}
             onClick={() => chooseNote(noteIndex)}

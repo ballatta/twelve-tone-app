@@ -1,4 +1,4 @@
-const flip = (n, pivot = 6, offset) => {
+const flip = (n, pivot = 6) => {
   // 1. find difference from pivot value
   let dif = n - pivot;
   // 2. floor difference to nearest int
@@ -40,12 +40,14 @@ export const retrogradeInversion = (row) => {
   return inversion(retrograde(row));
 };
 
-// 1. Map the row into a flipped row with the flip function
-// 2. Populate the furthermost left column with the flipped row, starting at top
-// 3. To fill second note in second row, take difference between first number in
-//    first row and second number in the first row and add this difference to the
-//    first number in the second row. Keep applying this process to fill out second row
-// 4. For rows 3-12, apply same process in second row
+/**
+ * 1. Map the row into a flipped row with the flip function
+ * 2. Populate the furthermost left column with the flipped row, starting at top
+ * 3. To fill second note in second row, take difference between first number in
+ *    first row and second number in the first row and add this difference to the
+ *    first number in the second row. Keep applying this process to fill out second row
+ * 4. For rows 3-12, apply same process in second row
+ */
 export const populateMatrix = (primeRow) => {
   const matrix = [];
   const flippedRow = primeRow.map((num) => flip(num, 6, primeRow[0]));
@@ -60,7 +62,7 @@ export const populateMatrix = (primeRow) => {
         myRow.push(null);
       }
     }
-    matrix.push(myRow)
+    matrix.push(myRow);
   }
   return matrix;
 };
