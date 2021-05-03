@@ -1,4 +1,4 @@
-import { inversion, retrograde, retrogradeInversion } from "./ttoneFuncs";
+import { inversion, retrograde, retrogradeInversion, getRow } from "./ttoneFuncs";
 
 const SAMPLE_ROW = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
@@ -19,4 +19,8 @@ describe("twelve tone functions", () => {
       EXPECT_FOR_RETROGRADE_INVERSION
     );
   });
+  it("can generate an arbitrary row", () => {
+    expect(getRow(SAMPLE_ROW, 1)).toStrictEqual([11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    const result = getRow([5, 1, 3, 2, 6, 8, 7, 11, 9, 10, 4, 0], 1);
+  })
 });

@@ -40,6 +40,16 @@ export const retrogradeInversion = (row) => {
   return inversion(retrograde(row));
 };
 
+export const getRow = (primeRow, rowNum) => {
+  const firstNote = flip(primeRow[rowNum])
+  const output = [firstNote]
+  primeRow.slice(1).forEach((note, index) => {
+    const diff = note - primeRow[index]
+    output.push((output[index] + diff) % 12)
+  })
+  return output
+}
+
 /**
  * 1. Map the row into a flipped row with the flip function
  * 2. Populate the furthermost left column with the flipped row, starting at top
@@ -50,7 +60,7 @@ export const retrogradeInversion = (row) => {
  */
 export const populateMatrix = (primeRow) => {
   const matrix = [];
-  const flippedRow = primeRow.map((num) => flip(num, 6, primeRow[0]));
+  const flippedRow = primeRow.map((num) => flip(num));
   for (let row = 0; row < 12; row++) {
     const myRow = [];
     for (let col = 0; col < 12; col++) {
