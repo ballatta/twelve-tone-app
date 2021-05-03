@@ -1,5 +1,5 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { RowEditor } from "./row_editor";
+import { Home } from "./home";
 
-export const App = () => <RowEditor />;
+export const App = () => <Home />;

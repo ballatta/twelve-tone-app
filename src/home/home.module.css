@@ -1,0 +1,5 @@
+.content {
+    width: 100vw;
+    height: 100vh;
+    background: conic-gradient( hsl(0, 100%, 83%), hsl(270, 100%, 88%), hsl(180, 100%, 89%), hsl(0, 100%, 83%));
+}
