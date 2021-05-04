@@ -5,3 +5,7 @@
 * fix table/box overflow on full browser size too
 * get rid of numbers in prime row and inversion col
 * add more testing for populateMatrix
+* save-states
+* P, I, R, RI tone rows in treble clef staff
+* option to chose which clef to use
+* write out some reminder rules for twelve tone composition
