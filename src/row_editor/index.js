@@ -50,10 +50,10 @@ export const RowEditor = () => {
   for (let row = 0; row < TABLE_HEIGHT; row++) {
     const myRow = [];
     for (let col = 0; col < TABLE_WIDTH; col++) {
-      if (row === 0 && col < index) {
+      if (false && row === 0 && col < index) {
         myRow.push(
           <td key={row + Math.random()}>
-            {NOTES[addOffset(primeRow[col], rootNote)]}
+            {NOTES[addOffset(primeRow[col])]}
           </td>
         );
       } else if (!_.isNil(fullMatrix[row][col])) {
@@ -71,7 +71,7 @@ export const RowEditor = () => {
   return (
     <div className="w-50 offset-3">
       {NOTES.map((note, i) => {
-        const noteIndex = subOffset(i, rootNote || 0);
+        const noteIndex = subOffset(i);
         return (
           <Button
             className="border-0"

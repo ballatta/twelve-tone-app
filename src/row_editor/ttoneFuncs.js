@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 const flip = (n, pivot = 6) => {
   // 1. find difference from pivot value
   let dif = n - pivot;
@@ -53,10 +55,8 @@ export const getRow = (primeRow, rowNum) => {
 /**
  * 1. Map the row into a flipped row with the flip function
  * 2. Populate the furthermost left column with the flipped row, starting at top
- * 3. To fill second note in second row, take difference between first number in
- *    first row and second number in the first row and add this difference to the
- *    first number in the second row. Keep applying this process to fill out second row
- * 4. For rows 3-12, apply same process in second row
+ * 3. To fill note n in row n, subtract note n - 1 in first row from note n in first row
+ *    add this difference to note n - 1 in row n
  */
 export const populateMatrix = (primeRow) => {
   const matrix = [];
@@ -69,7 +69,7 @@ export const populateMatrix = (primeRow) => {
       } else if (col === 0) {
         myRow.push(flippedRow[row]);
       } else {
-        myRow.push(null);
+        myRow.push(matrix[0][col] - matrix[0][col - 1] + myRow[col - 1]);
       }
     }
     matrix.push(myRow);
