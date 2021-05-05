@@ -70,6 +70,17 @@ export const RowEditor = () => {
   }
   return (
     <div className="w-50 offset-3">
+      <Table striped variant="dark" bordered>
+        <tbody>{columns}</tbody>
+      </Table>
+      <Col>
+        <Button className="btn-primary" onClick={() => {}}>
+          Submit
+        </Button>
+        <Button className="btn-secondary" onClick={resetChart}>
+          Reset
+        </Button>
+      </Col>
       {NOTES.map((note, i) => {
         const noteIndex = subOffset(i);
         return (
@@ -84,17 +95,6 @@ export const RowEditor = () => {
           </Button>
         );
       })}
-      <Table striped variant="dark" bordered>
-        <tbody>{columns}</tbody>
-      </Table>
-      <Col>
-        <Button className="btn-primary" onClick={() => {}}>
-          Submit
-        </Button>
-        <Button className="btn-secondary" onClick={resetChart}>
-          Reset
-        </Button>
-      </Col>
     </div>
   );
 };
