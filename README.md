@@ -9,3 +9,4 @@
 * P, I, R, RI tone rows in treble clef staff
 * option to chose which clef to use
 * write out some reminder rules for twelve tone composition
+* URL encoding of notes picked and states to aid in sharing

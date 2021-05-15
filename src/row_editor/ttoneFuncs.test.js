@@ -32,6 +32,5 @@ describe("twelve tone functions", () => {
     const populatedMatrix = populateMatrix(SAMPLE_ROW2)
     for (let i = 0; i < 12; i++) {
       expect(populatedMatrix[i][0]).toStrictEqual(expectForInversion[i]);
-    }
-  })
+  }})
 });
