@@ -5,6 +5,7 @@
 * fix table/box overflow on full browser size too
 * get rid of numbers in prime row and inversion col
 * add more testing for populateMatrix
+* possiblity to edit a specific note
 * save-states
 * P, I, R, RI tone rows in treble clef staff
 * option to chose which clef to use

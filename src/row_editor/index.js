@@ -40,6 +40,7 @@ export const RowEditor = () => {
      */
     setPrimeRow([]);
     setIndex(0);
+    setRootNote(null);
   };
   // TODO: make populateMatrix populate entire Matrix
   const fullMatrix = populateMatrix(primeRow);
