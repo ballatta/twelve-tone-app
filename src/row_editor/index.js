@@ -53,9 +53,7 @@ export const RowEditor = () => {
     for (let col = 0; col < TABLE_WIDTH; col++) {
       if (false && row === 0 && col < index) {
         myRow.push(
-          <td key={row + Math.random()}>
-            {NOTES[addOffset(primeRow[col])]}
-          </td>
+          <td key={row + Math.random()}>{NOTES[addOffset(primeRow[col])]}</td>
         );
       } else if (!_.isNil(fullMatrix[row][col])) {
         myRow.push(
@@ -71,31 +69,33 @@ export const RowEditor = () => {
   }
   return (
     <div className="w-50 offset-3">
-      <Table striped variant="dark" bordered>
+      <Table striped variant="dark" bordered style={{ textAlign: "center" }}>
         <tbody>{columns}</tbody>
       </Table>
+      <div>
+        {NOTES.map((note, i) => {
+          const noteIndex = subOffset(i);
+          return (
+            <Button
+              className="border-0"
+              style={{ backgroundColor: `rgb(123, ${10 * i}, 123)` }}
+              key={noteIndex}
+              disabled={primeRow.includes(noteIndex)}
+              onClick={() => chooseNote(noteIndex)}
+            >
+              {note}
+            </Button>
+          );
+        })}
+      </div>
       <Col>
         <Button className="btn-primary" onClick={() => {}}>
-          Submit
+          Save
         </Button>
         <Button className="btn-secondary" onClick={resetChart}>
           Reset
         </Button>
       </Col>
-      {NOTES.map((note, i) => {
-        const noteIndex = subOffset(i);
-        return (
-          <Button
-            className="border-0"
-            style={{ backgroundColor: `rgb(123, ${10 * i}, 123)` }}
-            key={noteIndex}
-            disabled={primeRow.includes(noteIndex)}
-            onClick={() => chooseNote(noteIndex)}
-          >
-            {note}
-          </Button>
-        );
-      })}
     </div>
   );
 };
